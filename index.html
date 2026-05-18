@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>公司介绍 | 独立标题与介绍模板</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; background-color: #fafaf9; color: #1c1c1e; scroll-behavior: smooth; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; box-shadow: 0 0 40px rgba(0,0,0,0.03); }
+        .hero-image { width: 100%; height: 35vh; min-height: 100px; background-image: url('logo.png'); background-size: 100%; background-position: center top; position: relative; }
+        .hero-image::after { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 25%; background: linear-gradient(to top, rgba(0,0,0,0.08), transparent); pointer-events: none; }
+        .company-intro { padding: 3rem 2rem; max-width: 1000px; margin: 0 auto; text-align: center; border-bottom: 1px solid #e9e8e6; }
+        .intro-text { font-size: 1.2rem; line-height: 1.7; color: #2c2c2e; word-break: break-word; font-family: monospace; letter-spacing: 1px; }
+        .slider-section { padding: 3rem 2rem 4rem; border-bottom: 1px solid #edebe9; }
+        .section-title { font-size: 1.8rem; font-weight: 600; margin-bottom: 2rem; letter-spacing: -0.3px; color: #1d1d1f; position: relative; display: inline-block; }
+        .section-title:after { content: ''; position: absolute; bottom: -8px; left: 0; width: 50px; height: 3px; background: #2c6e9e; border-radius: 2px; }
+        .swiper-card { display: flex; flex-wrap: wrap; background: #ffffff; border-radius: 28px; box-shadow: 0 8px 24px rgba(0,0,0,0.05); overflow: hidden; max-width: 900px;margin:0 auto; }
+        .image-swiper-area { flex: 1; min-width: 220px; background: #f5f5f7; position: relative; }
+        .swiper { width: 100%; height: 100%; min-height: 340px; }
+        .swiper-slide { text-align: center; background: #eef2f5; display: flex; justify-content: center; align-items: center; }
+        .swiper-slide img { display: block; width: 90%; height: 90%; object-fit: cover; object-position: center;  }
+        .product-info-area { flex: 1; padding: 1.2rem; background: #ffffff; display: flex; flex-direction: column; justify-content: center; }
+        .product-info-area h3 { font-size: 1.8rem; font-weight: 600; margin-bottom: 1rem; color: #111; }
+        .product-description { font-size: 1rem; line-height: 1.5; color: #3a3a3c; font-family: monospace; white-space: pre-wrap; word-break: break-word; }
+        .swiper-button-custom { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px; background: rgba(255,255,255,0.9); backdrop-filter: blur(6px); border-radius: 60px; display: flex; align-items: center; justify-content: center; z-index: 20; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: 0.2s; font-weight: bold; font-size: 1.6rem; color: #1e293b; user-select: none; }
+        .swiper-button-custom:hover { background: white; transform: translateY(-50%) scale(1.04); }
+        .swiper-button-prev-custom { left: 12px; }
+        .swiper-button-next-custom { right: 12px; }
+        .swiper-pagination { bottom: 12px !important; }
+        .swiper-pagination-bullet { background: #1e3a5f; opacity: 0.6; }
+        .swiper-pagination-bullet-active { background: #0077b6; }
+        .footer-info { background: #f8f9fa; padding: 2rem 2rem 2.5rem; text-align: center; border-top: 1px solid #e2e4e8; }
+        .contact-x { font-size: 1rem; line-height: 1.7; color: #2d3e50; font-family: monospace; }
+        .copyright { margin-top: 1rem; font-size: 0.8rem; color: #6c757d; }
+        @media (max-width: 780px) {
+            .swiper-card { flex-direction: column; }
+            .image-swiper-area, .product-info-area { flex: auto; width: 100%; }
+            .product-info-area { padding: 1.5rem; }
+            .hero-image { height: 45vh; min-height: 280px; }
+            .section-title { font-size: 1.5rem; }
+            .swiper-button-custom { width: 36px; height: 36px; font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hero-image" title="公司形象照片"></div>
+
+    <!-- 公司介绍区域 -->
+    <div class="company-intro">
+        <div class="intro-text" id="companyIntroText">加载中...</div>
+    </div>
+
+    <!-- 第一部分：7张图片 -->
+    <div class="slider-section">
+        <div class="section-title" id="sectionTitle1">核心展项 · 七维全景</div>
+        <div class="swiper-card">
+            <div class="image-swiper-area">
+                <div class="swiper swiper-first" id="swiperFirst">
+                    <div class="swiper-wrapper" id="slidesWrapper1"></div>
+                    <div class="swiper-button-custom swiper-button-prev-custom" id="prevFirst">❮</div>
+                    <div class="swiper-button-custom swiper-button-next-custom" id="nextFirst">❯</div>
+                    <div class="swiper-pagination" id="paginationFirst"></div>
+                </div>
+            </div>
+            <div class="product-info-area" id="infoArea1">
+                <h3 id="prodTitle1">加载中...</h3>
+                <div class="product-description" id="prodDesc1">加载中...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第二部分：3张图片 -->
+    <div class="slider-section">
+        <div class="section-title" id="sectionTitle2">明星系列 · 三大甄选</div>
+        <div class="swiper-card">
+            <div class="image-swiper-area">
+                <div class="swiper swiper-second" id="swiperSecond">
+                    <div class="swiper-wrapper" id="slidesWrapper2"></div>
+                    <div class="swiper-button-custom swiper-button-prev-custom" id="prevSecond">❮</div>
+                    <div class="swiper-button-custom swiper-button-next-custom" id="nextSecond">❯</div>
+                    <div class="swiper-pagination" id="paginationSecond"></div>
+                </div>
+            </div>
+            <div class="product-info-area" id="infoArea2">
+                <h3 id="prodTitle2">加载中...</h3>
+                <div class="product-description" id="prodDesc2">加载中...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第三部分：4张图片 -->
+    <div class="slider-section">
+        <div class="section-title" id="sectionTitle3">尊享典藏 · 四季灵感</div>
+        <div class="swiper-card">
+            <div class="image-swiper-area">
+                <div class="swiper swiper-third" id="swiperThird">
+                    <div class="swiper-wrapper" id="slidesWrapper3"></div>
+                    <div class="swiper-button-custom swiper-button-prev-custom" id="prevThird">❮</div>
+                    <div class="swiper-button-custom swiper-button-next-custom" id="nextThird">❯</div>
+                    <div class="swiper-pagination" id="paginationThird"></div>
+                </div>
+            </div>
+            <div class="product-info-area" id="infoArea3">
+                <h3 id="prodTitle3">加载中...</h3>
+                <div class="product-description" id="prodDesc3">加载中...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部公司信息 -->
+    <footer class="footer-info">
+        <div class="contact-x" id="footerContact">加载中...</div>
+        <div class="copyright" id="footerCopyright">© XXXX X X X 公司</div>
+    </footer>
+</div>
+
+<script>
+    (function() {
+        // ============================================================
+        // 👇👇👇 所有自定义文字都在这里修改 👇👇👇
+        // ============================================================
+        
+        // 1. 公司介绍区域文字（可写多行，用换行符分隔）
+        const COMPANY_INTRO_TEXT = `新动力(广州)技术有限公司成立于2020年，是由南京清研华成电动科技有限公司控股的一家致力于推动摩托车电动化和智能化的轻型车（电动摩托车）整车产品研发型公司。公司三电系统零部件及整车系统研发团队与清华大学欧阳明高院士领衔的车辆智能化研发团队共同融合，通过股权投资及跨专业团队资源整合，我们拥有可持续创新的电动摩托车整车及动力系统设计研发能力，以及三电系统零部件设计研发能力。`;
+        
+        // 2. 三个区域的标题（每个区域的顶部大标题）
+        const SECTION_TITLES = {
+            part1: "核心展项 · 电动摩托车",
+            part2: "明星系列 · 燃油三轮车",
+            part3: "尊享典藏 · 燃油摩托车"
+        };
+        
+        // 3. 产品标题和介绍（每张图片单独设置）
+        // 第一部分：7张图片（标题 + 介绍，一一对应）
+        const PRODUCTS_PART1 = [
+            { title: "电动产品一  SN1500D-1", desc: "配置方案:轮毂电机+单电池                                         整车尺寸（mm）:长1750*宽700*高1100                                            轴距:1360mm                                              最大载重:150kg                                            速度模式:节能/舒适/运动                                   最高时速:45km/h                                             最大续航:60-80km（30km/h）                               电池类型:锂离子电池/铅酸蓄电池                              电池容量:72V20Ah/72V30Ah                                  电池寿命≥2000次                                            充电时间:6H                                               电机功率:800W轮毂电机                                      最大扭矩:120N.m" },
+            { title: "电动产品二  SN1500D-2", desc: "配置方案:轮毂电机+单电池                                         整车尺寸（mm）:长1700*宽730*高1050                                            轴距:1300mm                                                 最大载重:150kg                                            速度模式:节能、舒适、运动                                  最高时速:45km/h                                             最大续航:60-80km（30km/h）                                           电池类型:锂离子电池/铅酸蓄电池                              电池容量:72V20Ah/72V30Ah                                  电池寿命≥2000次                                            充电时间:6H                                                     电机功率:800W轮毂电机                                      最大扭矩:120N.m" },
+            { title: "电动产品三  SN1500D-3", desc: "配置方案:轮毂电机+单电池     整车尺寸（mm）:长1800*宽770*高1150     轴距:1330mm     最大载重:150kg     速度模式:节能、舒适、运动     最高时速:65km/h     最大续航:60-80km（30km/h）     电池类型:铅酸蓄电池     电池容量:72V23Ah      电池寿命≥800次     充电时间:6H     电机功率:1.2kW轮毂电机     最大扭矩:120N.m" },
+            { title: "电动产品四  SN1500D-4", desc: "配置方案:轮毂电机+单电池     整车尺寸（mm）:长1750*宽810*高1110     轴距:1300mm     最大载重:150kg     速度模式:节能、舒适、运动     最高时速:45km/h     最大续航:60-80km（30km/h）     电池类型:锂离子电池/铅酸蓄电池     电池容量:72V20Ah/72V30Ah      电池寿命≥2000次     充电时间:6H     电机功率:800W轮毂电机     最大扭矩:120N.m" },
+            { title: "电动产品五  SN3000D-1", desc: "配置方案:中置电机+快速换电     整车尺寸（mm）:长2000*宽830*高1200     轴距:1390mm     最大载重:150kg     速度模式:节能、舒适、运动     最高时速:100km/h     最大续航:100-120km（30km/h）     电池类型:铁锂电池     电池容量:72V40Ah快速换电      电池寿命≥2000次     充电时间:6H     电机功率:3kW中置扁线电机     最大扭矩:350N.m" },
+            { title: "电动产品六  SN3000D-2", desc: "配置方案:轮毂电机+快速换电     整车尺寸（mm）:长2000*宽770*高1150     轴距:1428mm     最大载重:150kg     速度模式:节能、舒适、运动     最高时速:80km/h     最大续航:100-120km（30km/h）     电池类型:铁锂电池     电池容量:72V40Ah快速换电      电池寿命≥2000次     充电时间:6H     电机功率:3kW轮毂电机     最大扭矩:150N.m" },
+            { title: "电动产品七  SN3000D-3", desc: "配置方案:中置电机+快速换电     整车尺寸（mm）:长1550*宽790*高1060     轴距:1320mm     最大载重:150kg     速度模式:节能、舒适、运动     最高时速:80km/h     最大续航:80km（30km/h）     电池类型:混合固态电池     电池容量:72V30Ah      电池寿命≥2000次     充电时间:6H     电机功率:3kW中置电机     最大扭矩:305N.m" }
+        ];
+        
+        // 第二部分：3张图片（标题 + 介绍）
+        const PRODUCTS_PART2 = [
+            { title: "太子款燃油三轮车 SN150ZH-20B", desc: "整车尺寸（mm）:长3320*宽1350*高1520  轴距（mm）:2330  整车质量:370kg  最大油箱容量:17L  制动类型（前/后）:鼓刹/鼓刹  最大载重:800kg  最高时速:60km/h    动机类型:风冷单缸四冲程立式汽油发动机     排量（mm）:149      最大功率（千瓦/转/分钟）:8.5千瓦/8500转/分钟     最大扭矩:10.5牛米/6500转/分钟     油耗（升/百公里）:8.0" },
+            { title: "简易棚款燃油三轮摩托车 SN150ZH-175", desc: "整车尺寸（mm）:长3370*宽1400*高1880  轴距（mm）:2250  整车质量:410kg  最大油箱容量:17L  制动类型（前/后）:鼓刹/鼓刹  最大载重:1000kg  最高时速:60km/h    动机类型:风冷单缸四冲程立式汽油发动机     排量（mm）:149      最大功率（千瓦/转/分钟）:9.5千瓦/8000转/分钟     最大扭矩:12.5牛米/6500转/分钟     油耗（升/百公里）:8.7" },
+            { title: "管架棚款燃油三轮摩托车 SN150ZH-200", desc: "整车尺寸（mm）:长3550*宽1400*高1870  轴距（mm）:2330  整车质量:530kg  最大油箱容量:16L  制动类型（前/后）:鼓刹/鼓刹  最大载重:1000kg  最高时速:60km/h    动机类型:风冷单缸四冲程立式汽油发动机     排量（mm）:197      最大功率（千瓦/转/分钟）:10.2千瓦/7500转/分钟   最大扭矩:14.5牛米/6500转/分钟     油耗（升/百公里）:9.3" }
+        ];
+        
+        // 第三部分：4张图片（标题 + 介绍）
+        const PRODUCTS_PART3 = [
+            { title: "燃油摩托车一  SN110", desc: "整车尺寸（mm）:长1800*宽700*高1120  轴距（mm）:1225  整车质量:96.5kg  最大油箱容量:4.2L  制动类型（前/后）:碟刹/鼓刹  最大载重:150kg  最高时速:80km/h    动机类型:风冷单缸四冲程卧式汽油发动机     排量（mm）:107      最大功率（千瓦/转/分钟）:5.0千瓦/7500转/分钟   最大扭矩:8.0牛米/7000转/分钟     油耗（升/百公里）:1.8" },
+            { title: "燃油摩托车二  SN150-1", desc: "整车尺寸（mm）:长3550*宽1400*高1870  轴距（mm）:2330  整车质量:530kg  最大油箱容量:16L  制动类型（前/后）:鼓刹/鼓刹  最大载重:100kg  最高时速:60km/h    动机类型:风冷单缸四冲程立式汽油发动机     排量（mm）:197      最大功率（千瓦/转/分钟）:10.2千瓦/7500转/分钟   最大扭矩:14.5牛米/6500转/分钟     油耗（升/百公里）:9.3" },
+            { title: "燃油摩托车三  SN150-2", desc: "整车尺寸（mm）:长3550*宽1400*高1870  轴距（mm）:2330  整车质量:530kg  最大油箱容量:16L  制动类型（前/后）:鼓刹/鼓刹  最大载重:100kg  最高时速:60km/h    动机类型:风冷单缸四冲程立式汽油发动机     排量（mm）:197      最大功率（千瓦/转/分钟）:10.2千瓦/7500转/分钟   最大扭矩:14.5牛米/6500转/分钟     油耗（升/百公里）:9.3" },
+            { title: "燃油摩托车四  SN150-3", desc: "整车尺寸（mm）:长3550*宽1400*高1870  轴距（mm）:2330  整车质量:530kg  最大油箱容量:16L  制动类型（前/后）:鼓刹/鼓刹  最大载重:100kg  最高时速:60km/h    动机类型:风冷单缸四冲程立式汽油发动机     排量（mm）:197      最大功率（千瓦/转/分钟）:10.2千瓦/7500转/分钟   最大扭矩:14.5牛米/6500转/分钟     油耗（升/百公里）:9.3" }
+        ];
+        
+        // 4. 底部公司信息区域
+        const FOOTER_CONTACT_TEXT = `新动力（广州）技术有限公司 | 地址：广东省江门市蓬江区
+联系电话：023-XXXXXXX | 客服热线：400-XXX-XXXX
+电子邮箱：xxxxx@qq.com | 官方网站：www.xxxxxxxx.com`;
+        
+        const FOOTER_COPYRIGHT_TEXT = "© 2026 新动力（广州）技术有限公司 版权所有 | 设计：专业团队";
+        
+        // ============================================================
+        // 👆👆👆 以上是文字配置区域，修改后保存刷新即可生效 👆👆👆
+        // ============================================================
+        
+        // 图片配置（请在这里替换您的图片地址，保持数量与产品数一致）
+        const firstImages = [
+            "dianche1.png",
+            "dianche2.png",
+            "dianche3.png",
+            "dianche4.png",
+            "dianche5.png",
+            "dianche6.png",
+            "dianche7.png"
+        ];
+        
+        const secondImages = [
+            "sanlun1.png",
+            "sanlun2.png",
+            "sanlun3.png"
+        ];
+        
+        const thirdImages = [
+            "youche1.png",
+            "youche2.png",
+            "youche3.png",
+            "youche4.png"
+        ];
+        
+        // 获取产品数据数组
+        function getProductsArray(part) {
+            if (part === 1) return PRODUCTS_PART1;
+            if (part === 2) return PRODUCTS_PART2;
+            if (part === 3) return PRODUCTS_PART3;
+            return [];
+        }
+        
+        // 更新右侧产品信息（标题 + 介绍）
+        function updateProductInfo(part, activeIndex, total) {
+            const titleEl = document.getElementById(`prodTitle${part}`);
+            const descEl = document.getElementById(`prodDesc${part}`);
+            const products = getProductsArray(part);
+            
+            if (products && products.length > activeIndex) {
+                if (titleEl) {
+                    titleEl.innerHTML = products[activeIndex].title;
+                }
+                if (descEl) {
+                    descEl.innerHTML = products[activeIndex].desc;
+                }
+            } else {
+                if (titleEl) titleEl.innerHTML = "产品名称";
+                if (descEl) descEl.innerHTML = "暂无产品介绍，请在配置中添加。";
+            }
+        }
+        
+        // 渲染幻灯片
+        function renderSlides(wrapperId, images) {
+            const wrapper = document.getElementById(wrapperId);
+            if (!wrapper) return;
+            wrapper.innerHTML = "";
+            images.forEach((src, idx) => {
+                const slide = document.createElement("div");
+                slide.className = "swiper-slide";
+                const img = document.createElement("img");
+                img.src = src;
+                img.alt = "产品展示 " + (idx+1);
+                img.loading = "lazy";
+                img.style.width = "100%";
+                img.style.height = "100%";
+                img.style.objectFit = "cover";
+                slide.appendChild(img);
+                wrapper.appendChild(slide);
+            });
+        }
+        
+        // 初始化Swiper
+        function initSwiper(swiperId, prevId, nextId, pagId, partNum, slideCount) {
+            const container = document.getElementById(swiperId);
+            if (!container) return null;
+            const prevBtn = document.getElementById(prevId);
+            const nextBtn = document.getElementById(nextId);
+            const pagEl = document.getElementById(pagId);
+            
+            return new Swiper(container, {
+                speed: 400,
+                slidesPerView: 1,
+                slidesPerGroup: 1,
+                spaceBetween: 0,
+                loop: false,
+                autoHeight: true,
+                allowTouchMove: true,
+                navigation: { nextEl: nextBtn, prevEl: prevBtn },
+                pagination: { el: pagEl, clickable: true, dynamicBullets: true },
+                on: {
+                    init: function(s) { updateProductInfo(partNum, s.activeIndex, slideCount); },
+                    slideChange: function(s) { updateProductInfo(partNum, s.activeIndex, slideCount); },
+                    touchEnd: function(s) { updateProductInfo(partNum, s.activeIndex, slideCount); }
+                }
+            });
+        }
+        
+        // 应用所有静态文字
+        function applyStaticText() {
+            // 公司介绍
+            const introEl = document.getElementById('companyIntroText');
+            if (introEl) introEl.innerHTML = COMPANY_INTRO_TEXT.replace(/\n/g, '<br>');
+            
+            // 三个区域标题
+            const title1 = document.getElementById('sectionTitle1');
+            const title2 = document.getElementById('sectionTitle2');
+            const title3 = document.getElementById('sectionTitle3');
+            if (title1) title1.innerHTML = SECTION_TITLES.part1;
+            if (title2) title2.innerHTML = SECTION_TITLES.part2;
+            if (title3) title3.innerHTML = SECTION_TITLES.part3;
+            
+            // 底部信息
+            const footerContact = document.getElementById('footerContact');
+            const footerCopyright = document.getElementById('footerCopyright');
+            if (footerContact) footerContact.innerHTML = FOOTER_CONTACT_TEXT.replace(/\n/g, '<br>');
+            if (footerCopyright) footerCopyright.innerHTML = FOOTER_COPYRIGHT_TEXT;
+        }
+        
+        // 渲染所有幻灯片并初始化Swiper
+        renderSlides('slidesWrapper1', firstImages);
+        renderSlides('slidesWrapper2', secondImages);
+        renderSlides('slidesWrapper3', thirdImages);
+        
+        applyStaticText();
+        
+        let swiper1, swiper2, swiper3;
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                swiper1 = initSwiper('swiperFirst', 'prevFirst', 'nextFirst', 'paginationFirst', 1, firstImages.length);
+                swiper2 = initSwiper('swiperSecond', 'prevSecond', 'nextSecond', 'paginationSecond', 2, secondImages.length);
+                swiper3 = initSwiper('swiperThird', 'prevThird', 'nextThird', 'paginationThird', 3, thirdImages.length);
+            });
+        } else {
+            swiper1 = initSwiper('swiperFirst', 'prevFirst', 'nextFirst', 'paginationFirst', 1, firstImages.length);
+            swiper2 = initSwiper('swiperSecond', 'prevSecond', 'nextSecond', 'paginationSecond', 2, secondImages.length);
+            swiper3 = initSwiper('swiperThird', 'prevThird', 'nextThird', 'paginationThird', 3, thirdImages.length);
+        }
+        
+        window.addEventListener('load', function() {
+            if (swiper1 && swiper1.update) swiper1.update();
+            if (swiper2 && swiper2.update) swiper2.update();
+            if (swiper3 && swiper3.update) swiper3.update();
+        });
+    })();
+</script>
+</body>
+</html>
